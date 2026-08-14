@@ -187,15 +187,27 @@ function AboutSection() {
         </div>
         <div className="about-text">
           <div className="eyebrow">Nosotros</div>
-          <h2>Acuaristas atendiendo acuaristas</h2>
+          <h2>Más que acuarios, creamos espacios para disfrutar la vida</h2>
           <p>
-            Somos una tienda física en Punta Cana dedicada a peces, plantas y accesorios de acuario.
-            Cada animal que vendemos pasa por un período de cuarentena y control antes de estar disponible,
-            y cada compra incluye orientación sobre cuidado y aclimatación.
+            
+
+            En AcuarioFilia Punta Cana creemos que un acuario es mucho más que un recipiente con agua y peces. Es un pequeño ecosistema que transforma un espacio, transmite tranquilidad y nos conecta con la naturaleza.
+            <br />
+            Somos amantes de los peces, de los acuarios y de cada detalle que hace especial un proyecto. Por eso nos dedicamos a trabajar de manera personalizada, ofreciendo peces ornamentales, cíclidos y especies marinas, además de accesorios especializados para cada necesidad.
+            <br /><br />
+            Diseñamos y fabricamos acuarios a medida, cuidando tanto la parte estética como el bienestar de cada especie. También ofrecemos servicios de mantenimiento para que cada acuario pueda mantenerse saludable, hermoso y lleno de vida con el paso del tiempo.
           </p>
           <p>
             No vendemos en línea con carrito ni pagos automáticos — preferimos hablar contigo directamente
             por WhatsApp para confirmar disponibilidad, dar consejos según tu montaje y coordinar la entrega o retiro.
+            <br />
+            Queremos que cuando visites AcuarioFilia Punta Cana no encuentres solamente una tienda de acuarios, sino un lugar donde puedas descubrir, aprender, inspirarte y disfrutar de tu pasión por el mundo acuático.
+            <br />
+            Bienvenidos a AcuarioFilia Punta Cana.
+            🐠 Donde la pasión por los acuarios se encuentra con la naturaleza, el café y las buenas conversaciones.
+            <br /><br />
+
+            God bless. 🐟🐳🐢🐡
           </p>
         </div>
       </div>
