@@ -117,7 +117,7 @@ function SiteHeader() {
     <header>
       <div className="header-inner">
         <div className="brand">
-          <div className="brand-mark"><img src="./public/Logo.png" alt="" /></div>
+          <div className="brand-mark"><img src="/Logo.png" alt="" /></div>
           <div className="brand-text">
             <div className="top">Acuariofilia</div>
             <div className="bottom">Punta Cana</div>
@@ -163,7 +163,7 @@ function Hero() {
         </div>
         <div className="hero-visual">
           <div className="hero-ring">
-            <div className="hero-ring-inner"><img src="./public/Logo.png" alt="" /></div>
+            <div className="hero-ring-inner"><img src="/Logo.png" alt="" /></div>
           </div>
         </div>
       </div>
@@ -183,7 +183,7 @@ function AboutSection() {
         <div className="about-visual">
           <div className="ring1" />
           <div className="ring2" />
-          <div className="center-mark"><img src="./public/acuario.png" alt="" /></div>
+          <div className="center-mark"><img src="acuario.png" alt="" /></div>
         </div>
         <div className="about-text">
           <div className="eyebrow">Nosotros</div>
@@ -251,7 +251,7 @@ function SiteFooter() {
         <div className="foot-grid">
           <div>
             <div className="foot-brand">
-              <div className="brand-mark"> <img src="./public/Logo.png" alt="" /> </div>
+              <div className="brand-mark"> <img src="/Logo.png" alt="" /> </div>
               <div className="brand-text">
                 <div className="top">Acuariofilia</div>
                 <div className="bottom">Punta Cana</div>
