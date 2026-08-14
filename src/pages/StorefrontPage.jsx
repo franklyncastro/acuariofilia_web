@@ -47,7 +47,7 @@ export default function StorefrontPage() {
         <div className="wrap">
           <div className="section-head">
             <div className="eyebrow">Catálogo</div>
-            <h2>Lo que tenemos disponible esta semana</h2>
+            <h2>Lo que tenemos disponible para ti</h2>
             <p>Precios en RD$. Toca "Pedir" y te confirmamos disponibilidad al instante por WhatsApp.</p>
           </div>
 
@@ -117,7 +117,7 @@ function SiteHeader() {
     <header>
       <div className="header-inner">
         <div className="brand">
-          <div className="brand-mark">AP</div>
+          <div className="brand-mark"><img src="./public/Logo.png" alt="" /></div>
           <div className="brand-text">
             <div className="top">Acuariofilia</div>
             <div className="bottom">Punta Cana</div>
@@ -163,7 +163,7 @@ function Hero() {
         </div>
         <div className="hero-visual">
           <div className="hero-ring">
-            <div className="hero-ring-inner">🐢 🐠 Curado y cuidado por acuaristas locales</div>
+            <div className="hero-ring-inner"><img src="./public/Logo.png" alt="" /></div>
           </div>
         </div>
       </div>
@@ -183,7 +183,7 @@ function AboutSection() {
         <div className="about-visual">
           <div className="ring1" />
           <div className="ring2" />
-          <div className="center-mark">🐢</div>
+          <div className="center-mark"><img src="./public/acuario.png" alt="" /></div>
         </div>
         <div className="about-text">
           <div className="eyebrow">Nosotros</div>
@@ -214,15 +214,17 @@ function LocationSection() {
         <div className="loc-grid">
           <div className="loc-card">
             <h3>Información de contacto</h3>
-            <div className="loc-row"><span className="label">Dirección</span><span>Punta Cana, La Altagracia, R.D.</span></div>
+            <div className="loc-row"><span className="label">Dirección</span><span>Plaza Tres Center, Local B22, Av. Estados Unidos</span></div>
             <div className="loc-row"><span className="label">Horario</span><span>Lun a Sáb, 9:00am – 6:00pm</span></div>
-            <div className="loc-row"><span className="label">Teléfono</span><span>(809) 555-1234</span></div>
+            <div className="loc-row"><span className="label">Teléfono</span><span>(829) 606-7351</span></div>
             <a className="btn-wa" style={{ marginTop: 18, width: '100%', justifyContent: 'center' }} href={whatsappLink('Hola')} target="_blank" rel="noopener">
               <WaIcon /> Escribir por WhatsApp
             </a>
           </div>
           <div className="map-frame">
-            <span>El mapa interactivo se agregará aquí con tu ubicación exacta</span>
+            <span>
+             <iframe id='map' src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d24972.26133856813!2d-68.44648588569571!3d18.68611437669562!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea891645dcbfe77%3A0x32481f2e4ce7d349!2sMGRW%2B2H%2C%2023000%20Punta%20Cana!5e0!3m2!1ses!2sdo!4v1786666217708!5m2!1ses!2sdo"></iframe>
+            </span>
           </div>
         </div>
       </div>
@@ -237,7 +239,7 @@ function SiteFooter() {
         <div className="foot-grid">
           <div>
             <div className="foot-brand">
-              <div className="brand-mark">AP</div>
+              <div className="brand-mark"> <img src="./public/Logo.png" alt="" /> </div>
               <div className="brand-text">
                 <div className="top">Acuariofilia</div>
                 <div className="bottom">Punta Cana</div>
@@ -256,7 +258,7 @@ function SiteFooter() {
           <div>
             <h4>Contacto</h4>
             <div className="flinks">
-              <a href={whatsappLink('Hola')}>(809) 555-1234</a>
+              <a href={whatsappLink('Hola')}>(829) 606-7351</a>
               <a href="#ubicacion">Punta Cana, R.D.</a>
             </div>
           </div>
