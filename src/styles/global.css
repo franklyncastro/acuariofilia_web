@@ -148,7 +148,7 @@ footer .flinks a:hover{ color:#fff; }
 .admin-auth-card{ background:var(--paper); border-radius:var(--radius); padding:32px; width:100%; max-width:380px; box-shadow:0 20px 50px rgba(0,0,0,0.25); display:flex; flex-direction:column; gap:16px; }
 .admin-auth-brand{ display:flex; align-items:center; gap:12px; margin-bottom:8px; }
 .admin-auth-title{ font-family:'Fraunces',serif; font-weight:600; font-size:16px; color:var(--teal-deep); }
-.admin-auth-subtitle{ font-size:12.5px; color:var(--ink-soft); }
+.admin-auth-subtitle{ font-size:12.5px; color:var(--ink-soft); text-align: center;}
 .admin-back-link{ text-align:center; font-size:13px; color:var(--ink-soft); margin-top:4px; }
 .admin-back-link:hover{ color:var(--teal-dark); }
 

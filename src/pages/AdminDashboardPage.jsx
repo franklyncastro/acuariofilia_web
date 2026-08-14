@@ -62,8 +62,9 @@ export default function AdminDashboardPage() {
 
   return (
     <div className="admin-shell">
+      
       <header className="admin-topbar">
-        <div className="admin-topbar-title">Panel de administración</div>
+        <div className="admin-topbar-title"> Panel de administración</div>
         <div className="admin-topbar-actions">
           <a href="/" target="_blank" rel="noopener">Ver sitio público ↗</a>
           <button className="btn-ghost-admin" onClick={handleLogout}>Cerrar sesión</button>
