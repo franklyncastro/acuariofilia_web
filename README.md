@@ -83,4 +83,3 @@ volver a desplegar nada).
 - El número de WhatsApp y la dirección/horario del footer están fijos en
   `StorefrontPage.jsx` — se pueden mover a una tabla `settings` en Supabase
   si quieres editarlos también desde el admin más adelante.
-# acuariofilia_web

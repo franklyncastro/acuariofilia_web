@@ -1,37 +1,43 @@
 import { useEffect, useMemo, useState } from 'react'
 import { supabase, whatsappLink, formatPrice } from '../lib/supabase.js'
 
-const CATEGORY_LABELS = {
-  peces: 'Peces',
-  plantas: 'Plantas',
-  equipos: 'Equipos',
-  decoracion: 'Decoración',
-  alimentos: 'Alimentos',
-  otros: 'Otros',
-}
-
 export default function StorefrontPage() {
   const [products, setProducts] = useState([])
+  const [categories, setCategories] = useState([])
   const [loading, setLoading] = useState(true)
   const [activeCategory, setActiveCategory] = useState('todos')
 
   useEffect(() => {
     async function load() {
-      const { data } = await supabase
-        .from('products')
-        .select('*')
-        .eq('active', true)
-        .order('sort_order', { ascending: true })
-      setProducts(data || [])
+      const [{ data: productData }, { data: categoryData }] = await Promise.all([
+        supabase
+          .from('products')
+          .select('*')
+          .eq('active', true)
+          .order('sort_order', { ascending: true }),
+        supabase
+          .from('categories')
+          .select('*')
+          .order('sort_order', { ascending: true }),
+      ])
+      setProducts(productData || [])
+      setCategories(categoryData || [])
       setLoading(false)
     }
     load()
   }, [])
 
-  const categories = useMemo(() => {
-    const set = new Set(products.map((p) => p.category))
-    return ['todos', ...Array.from(set)]
-  }, [products])
+  function categoryLabel(slug) {
+    const found = categories.find((c) => c.slug === slug)
+    return found ? found.label : slug
+  }
+
+  const categoriesInUse = categories
+  
+  // const categoriesInUse = useMemo(() => {
+  //   const usedSlugs = new Set(products.map((p) => p.category))
+  //   return categories.filter((c) => usedSlugs.has(c.slug))
+  // }, [products, categories])
 
   const visibleProducts = useMemo(() => {
     if (activeCategory === 'todos') return products
@@ -47,19 +53,25 @@ export default function StorefrontPage() {
         <div className="wrap">
           <div className="section-head">
             <div className="eyebrow">Catálogo</div>
-            <h2>Lo que tenemos disponible para ti</h2>
+            <h2>Lo que tenemos disponible esta semana</h2>
             <p>Precios en RD$. Toca "Pedir" y te confirmamos disponibilidad al instante por WhatsApp.</p>
           </div>
 
-          {categories.length > 1 && (
+          {categoriesInUse.length > 1 && (
             <div className="filters">
-              {categories.map((c) => (
+              <button
+                className={`filter-chip ${activeCategory === 'todos' ? 'active' : ''}`}
+                onClick={() => setActiveCategory('todos')}
+              >
+                Todos
+              </button>
+              {categoriesInUse.map((c) => (
                 <button
-                  key={c}
-                  className={`filter-chip ${activeCategory === c ? 'active' : ''}`}
-                  onClick={() => setActiveCategory(c)}
+                  key={c.id}
+                  className={`filter-chip ${activeCategory === c.slug ? 'active' : ''}`}
+                  onClick={() => setActiveCategory(c.slug)}
                 >
-                  {c === 'todos' ? 'Todos' : CATEGORY_LABELS[c] || c}
+                  {c.label}
                 </button>
               ))}
             </div>
@@ -75,7 +87,7 @@ export default function StorefrontPage() {
 
           <div className="grid-products">
             {visibleProducts.map((p) => (
-              <ProductCard key={p.id} product={p} />
+              <ProductCard key={p.id} product={p} categoryLabel={categoryLabel(p.category)} />
             ))}
           </div>
         </div>
@@ -89,7 +101,7 @@ export default function StorefrontPage() {
   )
 }
 
-function ProductCard({ product }) {
+function ProductCard({ product, categoryLabel }) {
   const message = `Hola, me interesa ${product.name} (${formatPrice(product.price)})`
   return (
     <div className="card">
@@ -101,7 +113,7 @@ function ProductCard({ product }) {
         )}
       </div>
       <div className="card-body">
-        <div className="card-tag">{CATEGORY_LABELS[product.category] || product.category}</div>
+        <div className="card-tag">{categoryLabel || product.category}</div>
         <div className="card-title">{product.name}</div>
         <div className="card-price">{formatPrice(product.price)}</div>
         <a className="card-cta" href={whatsappLink(message)} target="_blank" rel="noopener">
@@ -163,7 +175,7 @@ function Hero() {
         </div>
         <div className="hero-visual">
           <div className="hero-ring">
-            <div className="hero-ring-inner"><img src="/Logo.png" alt="" /></div>
+            <div className="hero-ring-inner"><img src="/Logo.png" alt="logo" className='hero-img'/></div>
           </div>
         </div>
       </div>
@@ -226,7 +238,7 @@ function LocationSection() {
         <div className="loc-grid">
           <div className="loc-card">
             <h3>Información de contacto</h3>
-            <div className="loc-row"><span className="label">Dirección</span><span>Plaza Tres Center, Local B22, Av. Estados Unidos</span></div>
+            <div className="loc-row"><span className="label">Dirección</span><span>Punta Cana, La Altagracia, R.D.</span></div>
             <div className="loc-row"><span className="label">Horario</span><span>Lun a Sáb, 9:00am – 6:00pm</span></div>
             <div className="loc-row"><span className="label">Teléfono</span><span>(829) 606-7351</span></div>
             <a className="btn-wa" style={{ marginTop: 18, width: '100%', justifyContent: 'center' }} href={whatsappLink('Hola')} target="_blank" rel="noopener">
@@ -234,9 +246,7 @@ function LocationSection() {
             </a>
           </div>
           <div className="map-frame">
-            <span>
-             <iframe id='map' src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d24972.26133856813!2d-68.44648588569571!3d18.68611437669562!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea891645dcbfe77%3A0x32481f2e4ce7d349!2sMGRW%2B2H%2C%2023000%20Punta%20Cana!5e0!3m2!1ses!2sdo!4v1786666217708!5m2!1ses!2sdo"></iframe>
-            </span>
+            <iframe id='map' src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d24972.26133856813!2d-68.44648588569571!3d18.68611437669562!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea891645dcbfe77%3A0x32481f2e4ce7d349!2sMGRW%2B2H%2C%2023000%20Punta%20Cana!5e0!3m2!1ses!2sdo!4v1786666217708!5m2!1ses!2sdo"></iframe>
           </div>
         </div>
       </div>
@@ -251,7 +261,7 @@ function SiteFooter() {
         <div className="foot-grid">
           <div>
             <div className="foot-brand">
-              <div className="brand-mark"> <img src="/Logo.png" alt="" /> </div>
+              <div className="brand-mark"><img src="/Logo.png" alt="" /></div>
               <div className="brand-text">
                 <div className="top">Acuariofilia</div>
                 <div className="bottom">Punta Cana</div>

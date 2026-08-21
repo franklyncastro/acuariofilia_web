@@ -33,9 +33,8 @@ export default function AdminLoginPage() {
     <div className="admin-auth-screen">
       <form className="admin-auth-card" onSubmit={handleSubmit}>
         <div className="admin-auth-brand">
-          <div className="brand-mark"><img src="/Logo.png" alt="logo" /></div>
+          <div className="brand-mark">AP</div>
           <div>
-            
             <div className="admin-auth-title">Acuariofilia Punta Cana</div>
             <div className="admin-auth-subtitle">Panel de administración</div>
           </div>

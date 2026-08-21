@@ -5,7 +5,7 @@ export default function ProductFormModal({ product, categories, onClose, onSaved
   const isEditing = Boolean(product)
   const [name, setName] = useState(product?.name || '')
   const [price, setPrice] = useState(product?.price ?? '')
-  const [category, setCategory] = useState(product?.category || categories[0])
+  const [category, setCategory] = useState(product?.category || categories[0]?.slug || '')
   const [imageUrl, setImageUrl] = useState(product?.image_url || '')
   const [imageFile, setImageFile] = useState(null)
   const [preview, setPreview] = useState(product?.image_url || '')
@@ -107,11 +107,17 @@ export default function ProductFormModal({ product, categories, onClose, onSaved
 
             <label className="field">
               <span>Categoría</span>
-              <select value={category} onChange={(e) => setCategory(e.target.value)}>
-                {categories.map((c) => (
-                  <option key={c} value={c}>{c}</option>
-                ))}
-              </select>
+              {categories.length === 0 ? (
+                <div className="admin-muted" style={{ fontSize: 13 }}>
+                  No hay categorías todavía — crea una primero desde "Categorías".
+                </div>
+              ) : (
+                <select value={category} onChange={(e) => setCategory(e.target.value)}>
+                  {categories.map((c) => (
+                    <option key={c.id} value={c.slug}>{c.label}</option>
+                  ))}
+                </select>
+              )}
             </label>
           </div>
 

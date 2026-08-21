@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react'
 import { supabase, formatPrice } from '../lib/supabase.js'
 import ProductFormModal from '../components/ProductFormModal.jsx'
-
-const CATEGORIES = ['peces', 'plantas', 'equipos', 'decoracion', 'alimentos', 'otros']
+import CategoryManagerModal from '../components/CategoryManagerModal.jsx'
 
 export default function AdminDashboardPage() {
   const [products, setProducts] = useState([])
+  const [categories, setCategories] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [editing, setEditing] = useState(null)
   const [showForm, setShowForm] = useState(false)
+  const [showCategories, setShowCategories] = useState(false)
 
   async function loadProducts() {
     setLoading(true)
@@ -26,9 +27,23 @@ export default function AdminDashboardPage() {
     setLoading(false)
   }
 
+  async function loadCategories() {
+    const { data } = await supabase
+      .from('categories')
+      .select('*')
+      .order('sort_order', { ascending: true })
+    setCategories(data || [])
+  }
+
   useEffect(() => {
     loadProducts()
+    loadCategories()
   }, [])
+
+  function categoryLabel(slug) {
+    const found = categories.find((c) => c.slug === slug)
+    return found ? found.label : slug
+  }
 
   function openNew() {
     setEditing(null)
@@ -62,9 +77,8 @@ export default function AdminDashboardPage() {
 
   return (
     <div className="admin-shell">
-      
       <header className="admin-topbar">
-        <div className="admin-topbar-title"> Panel de administración</div>
+        <div className="admin-topbar-title">Panel de administración</div>
         <div className="admin-topbar-actions">
           <a href="/" target="_blank" rel="noopener">Ver sitio público ↗</a>
           <button className="btn-ghost-admin" onClick={handleLogout}>Cerrar sesión</button>
@@ -77,7 +91,10 @@ export default function AdminDashboardPage() {
             <h1>Productos</h1>
             <p>{products.length} producto{products.length !== 1 ? 's' : ''} en total</p>
           </div>
-          <button className="btn-primary" onClick={openNew}>+ Agregar producto</button>
+          <div style={{ display: 'flex', gap: 10 }}>
+            <button className="btn-ghost-admin" onClick={() => setShowCategories(true)}>Categorías</button>
+            <button className="btn-primary" onClick={openNew}>+ Agregar producto</button>
+          </div>
         </div>
 
         {error && <div className="admin-error">{error}</div>}
@@ -115,7 +132,7 @@ export default function AdminDashboardPage() {
                       </div>
                     </td>
                     <td className="admin-name-cell">{p.name}</td>
-                    <td className="admin-muted">{p.category}</td>
+                    <td className="admin-muted">{categoryLabel(p.category)}</td>
                     <td>{formatPrice(p.price)}</td>
                     <td>
                       <button
@@ -141,12 +158,20 @@ export default function AdminDashboardPage() {
       {showForm && (
         <ProductFormModal
           product={editing}
-          categories={CATEGORIES}
+          categories={categories}
           onClose={() => setShowForm(false)}
           onSaved={() => {
             setShowForm(false)
             loadProducts()
           }}
+        />
+      )}
+
+      {showCategories && (
+        <CategoryManagerModal
+          categories={categories}
+          onClose={() => setShowCategories(false)}
+          onChanged={loadCategories}
         />
       )}
     </div>
