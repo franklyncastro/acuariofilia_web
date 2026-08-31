@@ -225,3 +225,71 @@ footer .flinks a:hover{ color:#fff; }
   .field-row{ grid-template-columns:1fr; }
   .admin-main-head{ flex-direction:column; align-items:flex-start; }
 }
+
+
+/* ====================== PRODUCT LIGHTBOX (public site) ====================== */
+.lightbox-backdrop{
+  position:fixed; inset:0; z-index:200;
+  background:rgba(10,30,30,0.72);
+  backdrop-filter:blur(2px);
+  display:flex; align-items:center; justify-content:center;
+  padding:20px;
+  animation:lightbox-fade .15s ease-out;
+}
+@keyframes lightbox-fade{ from{ opacity:0; } to{ opacity:1; } }
+
+.lightbox-close{
+  position:fixed; top:18px; right:18px; z-index:201;
+  width:40px; height:40px; border-radius:50%;
+  background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.25);
+  color:#fff; font-size:24px; line-height:1;
+  display:flex; align-items:center; justify-content:center;
+}
+.lightbox-close:hover{ background:rgba(255,255,255,0.22); }
+
+.lightbox-card{
+  background:var(--paper);
+  border-radius:20px;
+  overflow:hidden;
+  max-width:920px; width:100%;
+  max-height:88vh;
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  box-shadow:0 30px 70px rgba(0,0,0,0.35);
+}
+
+.lightbox-media{
+  background:var(--teal-tint);
+  display:flex; align-items:center; justify-content:center;
+  min-height:280px;
+  max-height:88vh;
+  overflow:hidden;
+}
+.lightbox-media img{ width:100%; height:100%; object-fit:cover; }
+.lightbox-media-fallback{ font-size:80px; }
+
+.lightbox-info{
+  padding:32px;
+  display:flex; flex-direction:column; gap:10px;
+  justify-content:center;
+}
+.lightbox-tag{ font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--green-deep); }
+.lightbox-title{ font-size:24px; line-height:1.2; }
+.lightbox-price{ font-size:20px; font-weight:700; color:var(--blue-ocean); margin-bottom:8px; }
+.lightbox-cta{ width:100%; justify-content:center; font-size:15px; padding:13px; }
+
+@media (max-width:760px){
+  .lightbox-backdrop{ padding:0; align-items:flex-end; }
+  .lightbox-card{
+    grid-template-columns:1fr;
+    max-height:92vh;
+    width:100%;
+    border-radius:20px 20px 0 0;
+    animation:lightbox-slide-up .2s ease-out;
+  }
+  .lightbox-media{ min-height:0; aspect-ratio:1/0.85; max-height:48vh; }
+  .lightbox-info{ padding:22px 20px 28px; }
+  .lightbox-title{ font-size:20px; }
+  .lightbox-close{ top:14px; right:14px; }
+}
+@keyframes lightbox-slide-up{ from{ transform:translateY(30px); opacity:0.6; } to{ transform:translateY(0); opacity:1; } }
