@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { supabase, whatsappLink, formatPrice } from "../lib/supabase.js";
 import ProductLightbox from "../components/ProductLightbox.jsx";
+import Pagination from '../components/Pagination.jsx'
 
 export default function StorefrontPage() {
   const [products, setProducts] = useState([]);
@@ -8,6 +9,8 @@ export default function StorefrontPage() {
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState("todos");
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [page, setPage] = useState(1)
+  
 
   useEffect(() => {
     async function load() {
@@ -38,15 +41,20 @@ export default function StorefrontPage() {
 
   const categoriesInUse = categories;
 
-  // const categoriesInUse = useMemo(() => {
-  //   const usedSlugs = new Set(products.map((p) => p.category))
-  //   return categories.filter((c) => usedSlugs.has(c.slug))
-  // }, [products, categories])
-
   const visibleProducts = useMemo(() => {
     if (activeCategory === "todos") return products;
     return products.filter((p) => p.category === activeCategory);
   }, [products, activeCategory]);
+
+  const PAGE_SIZE = 12
+  const totalPages = Math.max(1, Math.ceil(visibleProducts.length / PAGE_SIZE))
+  const currentPage = Math.min(page, totalPages)
+  const pagedProducts = visibleProducts.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE)
+
+  function goToPage(n) {
+    setPage(n)
+    document.getElementById('productos')?.scrollIntoView({ behavior: 'smooth' })
+  }
 
   return (
     <>
@@ -68,7 +76,7 @@ export default function StorefrontPage() {
             <div className="filters">
               <button
                 className={`filter-chip ${activeCategory === "todos" ? "active" : ""}`}
-                onClick={() => setActiveCategory("todos")}
+                onClick={() => { setActiveCategory('todos'); setPage(1) }}
               >
                 Todos
               </button>
@@ -76,13 +84,18 @@ export default function StorefrontPage() {
                 <button
                   key={c.id}
                   className={`filter-chip ${activeCategory === c.slug ? "active" : ""}`}
-                  onClick={() => setActiveCategory(c.slug)}
+                  onClick={() => { setActiveCategory(c.slug); setPage(1) }}
                 >
                   {c.label}
                 </button>
               ))}
             </div>
           )}
+
+          <div>
+            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={goToPage} />
+          </div>
+          <br/>
 
           {loading && (
             <p className="admin-muted" style={{ textAlign: "center" }}>
@@ -97,7 +110,7 @@ export default function StorefrontPage() {
           )}
 
           <div className="grid-products">
-            {visibleProducts.map((p) => (
+            {pagedProducts.map((p) => (
               <ProductCard
                 key={p.id}
                 product={p}
@@ -106,7 +119,8 @@ export default function StorefrontPage() {
               />
             ))}
           </div>
-        </div>
+            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={goToPage} />
+          </div>
       </section>
 
       <AboutSection />
@@ -135,6 +149,7 @@ function ProductCard({ product, categoryLabel, onImageClick }) {
           <img
             src={product.image_url}
             alt={product.name}
+            loading="lazy"
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           />
         ) : (

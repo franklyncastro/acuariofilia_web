@@ -293,3 +293,22 @@ footer .flinks a:hover{ color:#fff; }
   .lightbox-close{ top:14px; right:14px; }
 }
 @keyframes lightbox-slide-up{ from{ transform:translateY(30px); opacity:0.6; } to{ transform:translateY(0); opacity:1; } }
+
+
+/* ====================== PAGINATION (public site) ====================== */
+#productos{ scroll-margin-top:70px; }
+
+.pagination{ display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; margin-top:36px; }
+.pagination-numbers{ display:flex; gap:6px; }
+.pagination-btn{ font-size:13.5px; font-weight:600; color:var(--teal-dark); background:var(--teal-tint); border:1px solid transparent; padding:8px 14px; border-radius:999px; min-width:36px; transition:background .15s; }
+.pagination-btn:hover:not(:disabled){ background:#D2EBE5; }
+.pagination-btn.active{ background:var(--teal-dark); color:#fff; }
+.pagination-btn:disabled{ opacity:.45; cursor:not-allowed; }
+.pagination-gap{ color:var(--ink-soft); align-self:center; padding:0 2px; }
+.pagination-status{ display:none; font-size:13.5px; font-weight:600; color:var(--ink-soft); }
+
+@media (max-width:640px){
+  .pagination{ gap:8px; }
+  .pagination-numbers{ display:none; }
+  .pagination-status{ display:block; }
+}
