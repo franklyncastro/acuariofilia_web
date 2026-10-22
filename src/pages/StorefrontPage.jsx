@@ -271,42 +271,39 @@ function AboutSection() {
         </div>
         <div className="about-text">
           <div className="eyebrow">Nosotros</div>
-          <h2>Más que acuarios, creamos espacios para disfrutar la vida</h2>
+          <h2>Más que un acuario, creamos pequeños mundos. 🐠🌿</h2>
           <p>
-            En AcuarioFilia Punta Cana creemos que un acuario es mucho más que
-            un recipiente con agua y peces. Es un pequeño ecosistema que
-            transforma un espacio, transmite tranquilidad y nos conecta con la
-            naturaleza.
+            En Acuariofilia Punta Cana creemos que cada acuario cuenta una historia.
             <br />
-            Somos amantes de los peces, de los acuarios y de cada detalle que
-            hace especial un proyecto. Por eso nos dedicamos a trabajar de
-            manera personalizada, ofreciendo peces ornamentales, cíclidos y
-            especies marinas, además de accesorios especializados para cada
-            necesidad.
+            Un acuario no es simplemente agua, peces y decoración.
+            <br />
+             Es un pequeño ecosistema lleno de vida, capaz de transformar un espacio, crear momentos de tranquilidad y acercarnos a la belleza de la naturaleza.
+            <br />
+            Nacimos de una pasión genuina por el mundo acuático y de las ganas de compartirla contigo. Por eso, cada proyecto lo vemos de manera diferente: escuchamos tus ideas, conocemos tus necesidades y te ayudamos a convertirlas en un acuario que realmente disfrutes.
             <br />
             <br />
-            Diseñamos y fabricamos acuarios a medida, cuidando tanto la parte
-            estética como el bienestar de cada especie. También ofrecemos
-            servicios de mantenimiento para que cada acuario pueda mantenerse
-            saludable, hermoso y lleno de vida con el paso del tiempo.
+            Encontrarás una amplia variedad de peces ornamentales, cíclidos, especies marinas, plantas, alimentos, equipos, decoración y accesorios especializados. También diseñamos y fabricamos acuarios a medida, buscando siempre ese equilibrio entre belleza, funcionalidad y bienestar para sus habitantes.
+            <br/>
+            Y cuando el acuario ya está en casa, seguimos contigo. Ofrecemos servicios de mantenimiento y asesoría, porque sabemos que un acuario hermoso no solo se construye: se cuida, se entiende y se disfruta.
           </p>
           <p>
-            No vendemos en línea con carrito ni pagos automáticos — preferimos
-            hablar contigo directamente por WhatsApp para confirmar
-            disponibilidad, dar consejos según tu montaje y coordinar la entrega
-            o retiro.
-            <br />
-            Queremos que cuando visites AcuarioFilia Punta Cana no encuentres
-            solamente una tienda de acuarios, sino un lugar donde puedas
-            descubrir, aprender, inspirarte y disfrutar de tu pasión por el
-            mundo acuático.
-            <br />
-            Bienvenidos a AcuarioFilia Punta Cana. 🐠 Donde la pasión por los
-            acuarios se encuentra con la naturaleza, el café y las buenas
-            conversaciones.
+            🐟 Queremos conocerte, no solo venderte.
+            <br/>
+            Por eso no apostamos por una tienda fría de carrito y pagos automáticos. Preferimos conversar contigo directamente por WhatsApp, orientarte, confirmar la disponibilidad de lo que buscas y ayudarte a elegir lo que realmente necesitas para tu montaje.
+
             <br />
             <br />
-            God bless. 🐟🐳🐢🐡
+              Porque detrás de cada pez hay una vida, detrás de cada acuario hay un proyecto              y detrás de cada proyecto hay una persona con una ilusión.
+            <br />
+            Visítanos, descubre nuevas especies, aprende algo nuevo, inspírate con nuestros acuarios y comparte una buena conversación mientras disfrutas de un café.
+            <br />
+            <br />
+            Acuariofilia Punta Cana
+            Donde la pasión por los acuarios se encuentra con la naturaleza, el café y las buenas conversaciones. ☕🐠🌿
+            <br />
+            Bienvenidos a nuestro mundo.
+            <br />
+            God bless. 🙏🐟🐢🐡🐳
           </p>
         </div>
       </div>
